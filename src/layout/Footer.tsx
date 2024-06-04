@@ -20,7 +20,16 @@ export const Footer = () => {
   return (
     <Container mt={150}>
       <Stack align="center">
-        <Title fz={26} c="gray.7" lts={-1} order={3} ta="center">
+        <Title
+          fz={{
+            sm: 32,
+            md: 36,
+          }}
+          c="gray.7"
+          lts={-1}
+          order={3}
+          ta="center"
+        >
           Designed for everyone
           <br />
           Save time understanding your data.
@@ -31,7 +40,7 @@ export const Footer = () => {
           style={{ border: "1px solid #625BF6" }}
           component={Link}
           prefetch={false}
-          href="/pricing"
+          href="/#pricing"
           radius="lg"
           size="xl"
         >
