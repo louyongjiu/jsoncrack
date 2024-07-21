@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Title, Grid, Paper, Badge, Image, Container } from "@mantine/core";
+import { Text, Title, Grid, Paper, Badge, Image, Container, rem } from "@mantine/core";
 import styled from "styled-components";
 
 const StyledPaper = styled.div`
@@ -27,14 +27,27 @@ const StyledPaper = styled.div`
 
 export const Features = () => {
   return (
-    <Container component="section" id="features" fluid my={150}>
+    <Container
+      pos="relative"
+      component="section"
+      id="features"
+      px={{
+        sm: rem(10),
+        md: rem(80),
+      }}
+      w="100%"
+      maw={rem(1700)}
+      fluid
+      my={150}
+    >
       <Title
         c="black"
         order={2}
         px="lg"
         fz={{
-          sm: 32,
-          md: 42,
+          base: 26,
+          xs: 32,
+          sm: 42,
         }}
         fw={600}
         mt={120}
@@ -62,15 +75,16 @@ export const Features = () => {
         editor. Make smarter decisions faster.
       </Text>
 
-      <Grid w="80%" gutter={24} mt={50} mb={150} mx="auto">
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+      <Grid gutter={24} mt={50} mb={150} mx="auto">
+        <Grid.Col span={{ base: 12, xs: 6 }}>
           <Paper
             pos="relative"
             p={30}
             shadow="sm"
-            radius="sm"
+            radius="md"
             w="100%"
-            h={{ sm: 300, md: 370 }}
+            mah={{ sm: 300, md: 370 }}
+            h="100%"
             withBorder
             style={{ overflow: "hidden", borderColor: "#ececec" }}
             bg="white"
@@ -95,13 +109,14 @@ export const Features = () => {
             </StyledPaper>
           </Paper>
         </Grid.Col>
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, xs: 6 }}>
           <Paper
             p={30}
             shadow="sm"
-            radius="sm"
+            radius="md"
             w="100%"
-            h={{ sm: 300, md: 370 }}
+            mah={{ sm: 300, md: 370 }}
+            h="100%"
             bg="white"
             withBorder
             style={{ overflow: "hidden", borderColor: "#ececec" }}
@@ -119,7 +134,7 @@ export const Features = () => {
                 radius={5}
                 w="fit-content"
                 mx="auto"
-                style={{ borderColor: "gray" }}
+                style={{ borderColor: "lightgray" }}
               >
                 <Image
                   loading="lazy"
@@ -132,45 +147,14 @@ export const Features = () => {
             </StyledPaper>
           </Paper>
         </Grid.Col>
-        <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Grid.Col span={{ base: 12, xs: 6 }}>
           <Paper
             p={30}
             shadow="sm"
-            radius="sm"
+            radius="md"
             w="100%"
-            h={{ sm: 300, md: 370 }}
-            withBorder
-            style={{ overflow: "hidden", borderColor: "#ececec" }}
-            bg="white"
-          >
-            <StyledPaper>
-              <Title c="black" order={3} fw={500} fz={{ sm: 20, md: 28 }}>
-                Search
-              </Title>
-              <Text fz={{ sm: 14, md: 18 }} c="dark.5" mt={10}>
-                Highlight and search what you need in your data, without any hassle.
-              </Text>
-              <Image
-                loading="lazy"
-                src="./assets/features/search.webp"
-                alt="Search"
-                w={{ sm: 400, md: 500 }}
-                mx="auto"
-                mt={20}
-                style={{
-                  filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-                }}
-              />
-            </StyledPaper>
-          </Paper>
-        </Grid.Col>
-        <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Paper
-            p={30}
-            shadow="sm"
-            radius="sm"
-            w="100%"
-            h={{ sm: 300, md: 370 }}
+            mah={{ sm: 300, md: 370 }}
+            h="100%"
             withBorder
             style={{ overflow: "hidden", borderColor: "#ececec" }}
             bg="white"
@@ -237,6 +221,39 @@ export const Features = () => {
                   </Badge>
                 </Grid.Col>
               </Grid>
+            </StyledPaper>
+          </Paper>
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, xs: 6 }}>
+          <Paper
+            p={30}
+            shadow="sm"
+            radius="md"
+            w="100%"
+            mah={{ sm: 300, md: 370 }}
+            h="100%"
+            withBorder
+            style={{ overflow: "hidden", borderColor: "#ececec" }}
+            bg="white"
+          >
+            <StyledPaper>
+              <Title c="black" order={3} fw={500} fz={{ sm: 20, md: 28 }}>
+                Search
+              </Title>
+              <Text fz={{ sm: 14, md: 18 }} c="dark.5" mt={10}>
+                Highlight and search what you need in your data, without any hassle.
+              </Text>
+              <Image
+                loading="lazy"
+                src="./assets/features/search.webp"
+                alt="Search"
+                w={{ sm: 400, md: 500 }}
+                mx="auto"
+                mt={20}
+                style={{
+                  filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
+                }}
+              />
             </StyledPaper>
           </Paper>
         </Grid.Col>
