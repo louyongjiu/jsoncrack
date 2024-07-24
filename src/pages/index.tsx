@@ -1,7 +1,6 @@
 import React from "react";
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import "@mantine/carousel/styles.css";
 import styled from "styled-components";
 import { metaDescription } from "src/constants/landing";
 import { FAQ } from "src/containers/Landing/FAQ";
@@ -34,6 +33,7 @@ export const HomePage = ({ stars }: InferGetStaticPropsType<typeof getStaticProp
         <meta name="description" content={metaDescription} key="description" />
         <meta property="og:description" content={metaDescription} key="ogdescription" />
         <meta name="twitter:description" content={metaDescription} key="twdescription" />
+        <link rel="canonical" href="https://jsoncrack.com" />
       </Head>
       <StyledSectionWrapper>
         <HeroSection />
