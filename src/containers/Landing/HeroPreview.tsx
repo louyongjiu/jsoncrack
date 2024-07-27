@@ -1,15 +1,10 @@
 import React from "react";
-import { Flex, Image, Paper, SegmentedControl, Stack } from "@mantine/core";
+import { AspectRatio, Flex, Paper, SegmentedControl, Stack } from "@mantine/core";
 import styled from "styled-components";
-import { images } from "src/constants/landing";
 
 const StyledPreviewWrapper = styled.div`
   margin: 0 auto;
   position: relative;
-
-  @media only screen and (max-width: 996px) {
-    display: none;
-  }
 `;
 
 export const HeroPreview = () => {
@@ -17,7 +12,16 @@ export const HeroPreview = () => {
 
   return (
     <StyledPreviewWrapper id="preview">
-      <Flex gap="lg" mx="auto" w="85%">
+      <Flex
+        gap="lg"
+        direction={{
+          base: "column",
+          xs: "row",
+        }}
+        mx="auto"
+        maw="85%"
+        justify="center"
+      >
         <Stack>
           <SegmentedControl
             data={[
@@ -53,6 +57,7 @@ export const HeroPreview = () => {
             color="grape"
             bg="transparent"
             size="lg"
+            visibleFrom="sm"
             styles={{
               control: {
                 background: "#8f8f8f52",
@@ -64,26 +69,35 @@ export const HeroPreview = () => {
             }}
           />
         </Stack>
+
         <Paper
-          bg="transparent"
-          w="100%"
           p={0}
-          radius="md"
+          w="100%"
+          maw={1440}
+          h="fit-content"
+          radius="lg"
+          shadow="xl"
+          bg="transparent"
           style={{
             overflow: "hidden",
             border: "1px solid #c1c1c1",
             outline: "1px solid #c1c1c1",
             outlineOffset: "4px",
           }}
-          shadow="xl"
         >
-          <Image
-            fit="cover"
-            src={`./assets/preview/${selectedFeature}.webp`}
-            loading={selectedFeature === "1" ? "eager" : "lazy"}
-            alt={images[+selectedFeature - 1].alt}
-            h="100%"
-          />
+          <AspectRatio ratio={1440 / 760} maw={1440} w="100%" h="100%">
+            <video
+              autoPlay
+              muted
+              loop
+              preload="auto"
+              poster={`./assets/preview/${selectedFeature}.webp`}
+              key={selectedFeature}
+              style={{ display: "block" }}
+            >
+              <source src={`./assets/videos/p${selectedFeature}.mp4`} type="video/mp4" />
+            </video>
+          </AspectRatio>
         </Paper>
       </Flex>
     </StyledPreviewWrapper>
