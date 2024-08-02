@@ -43,6 +43,24 @@ const StyledHeroSection = styled.main`
   }
 `;
 
+const StyledHeroSectionBody = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 10% 3rem;
+  overflow: hidden;
+  text-align: center;
+  gap: 60px;
+  min-height: 40vh;
+
+  @media only screen and (max-width: 768px) {
+    padding: 6em 16px;
+    margin-top: 10vh;
+  }
+`;
+
 const StyledHeroTitle = styled.h1`
   position: relative;
   font-size: 2.2rem;
@@ -95,27 +113,9 @@ const StyledHeroText = styled.p`
   }
 `;
 
-const StyledHeroSectionBody = styled.div`
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 7rem 10%;
-  overflow: hidden;
-  text-align: center;
-  gap: 60px;
-  min-height: 40vh;
-
-  @media only screen and (max-width: 768px) {
-    padding: 6em 16px;
-    margin-top: 10vh;
-  }
-`;
-
 export const HeroSection = () => {
   return (
-    <StyledHeroSection id="hero-section">
+    <StyledHeroSection>
       <StyledHeroSectionBody>
         <Stack flex="1" miw={250} mx="auto" align="center">
           <Badge
@@ -153,19 +153,6 @@ export const HeroSection = () => {
             </Badge>
           </Flex>
           <Flex gap="md" wrap="wrap" justify="center">
-            <Button
-              component="a"
-              color="gray.2"
-              href="/#preview"
-              size="lg"
-              radius="sm"
-              fw={500}
-              fz="md"
-              mt="lg"
-              visibleFrom="xs"
-            >
-              Learn more
-            </Button>
             <Button
               component="a"
               color="orange"
