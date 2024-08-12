@@ -18,8 +18,8 @@ import {
 } from "@mantine/core";
 import styled from "styled-components";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import { FaCheck, FaXmark } from "react-icons/fa6";
-import { VscArrowRight, VscLinkExternal } from "react-icons/vsc";
+import { FaArrowRightLong, FaCheck, FaXmark } from "react-icons/fa6";
+import { VscLinkExternal } from "react-icons/vsc";
 import Layout from "src/layout/Layout";
 import { gaEvent } from "src/lib/utils/gaEvent";
 
@@ -41,7 +41,7 @@ export const purchaseLinks = {
 const StyledPaper = styled(Paper)<PaperProps & any>`
   padding: 1.5em;
   width: 350px;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 2px solid #e9e9e9;
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -63,7 +63,6 @@ export const PricingCards = () => {
           w={200}
           radius="md"
           styles={{ label: { color: "black" } }}
-          mb="xl"
         />
       </Center>
       <Flex
@@ -78,9 +77,46 @@ export const PricingCards = () => {
         }}
         mx="auto"
       >
+        <Box w="100%">
+          <StyledPaper
+            withBorder
+            p="sm"
+            w="100%"
+            style={{ borderColor: "orange" }}
+            visibleFrom="sm"
+          >
+            <Flex gap="xs" align="end">
+              <Stack gap="xs">
+                <Text fz="md" fw={500}>
+                  Buy once,
+                  <Text ml={4} component="span" inherit c="orange">
+                    use forever
+                  </Text>
+                  !
+                </Text>
+                <Text fz="sm" maw={400}>
+                  Gain lifetime access to JSON Crack, enjoy all the advantages of our Premium plan
+                  with this one-time deal.
+                </Text>
+              </Stack>
+              <Button
+                component="a"
+                href={purchaseLinks.ltd}
+                target="_blank"
+                fw={400}
+                fz="sm"
+                size="md"
+                color="orange"
+                rightSection={<FaArrowRightLong />}
+              >
+                Get Lifetime Access for ${PRICING.LTD}
+              </Button>
+            </Flex>
+          </StyledPaper>
+        </Box>
         <StyledPaper>
           <Flex justify="space-between">
-            <Stack gap="0">
+            <Stack gap="0" w="100%">
               <Flex align="center">
                 <Text fw={500} size="xl" c="black">
                   Premium
@@ -108,9 +144,14 @@ export const PricingCards = () => {
                   / mo
                 </Text>
               </Flex>
-              <Text fz="xs" c="gray.7">
-                billed {isMonthly ? "monthly" : "annually"}
-              </Text>
+              <Flex justify="space-between">
+                <Text fz="xs" c="gray.7">
+                  billed {isMonthly ? "monthly" : "annually"}
+                </Text>
+                <Anchor component={Link} href="/premium" ml="sm" fz="xs" td="underline" c="dimmed">
+                  see all features
+                </Anchor>
+              </Flex>
             </Stack>
           </Flex>
           <Button
@@ -123,12 +164,12 @@ export const PricingCards = () => {
             radius="md"
             fullWidth
             my="md"
-            rightSection={<VscArrowRight />}
+            rightSection={<FaArrowRightLong />}
           >
             Get Started
           </Button>
           <Text mt="xs" fz="xs" c="dimmed">
-            Remake version with advanced features, better performance and smooth user interface.
+            Full-featured version of the editor with unlimited access.
           </Text>
           <Flex direction="column" justify="space-between">
             <List
@@ -240,7 +281,7 @@ export const PricingCards = () => {
             color="dark"
             fullWidth
             my="md"
-            rightSection={<VscArrowRight />}
+            rightSection={<FaArrowRightLong />}
           >
             Start Free
           </Button>
@@ -341,36 +382,6 @@ export const PricingCards = () => {
           </Flex>
         </StyledPaper>
       </Flex>
-      <Box id="buyonce" pt="lg">
-        <StyledPaper w="100%" style={{ borderColor: "orange" }} visibleFrom="sm">
-          <Stack px="xl">
-            <Text fz="h2" fw={500} ta="center">
-              Buy once,
-              <Text ml={4} component="span" inherit c="orange">
-                use forever
-              </Text>
-              !
-            </Text>
-            <Text>
-              Gain lifetime access to JSON Crack, enjoy all the advantages of our Premium plan with
-              this one-time deal.
-            </Text>
-            <Button
-              component="a"
-              href={purchaseLinks.ltd}
-              target="_blank"
-              w="fit-content"
-              mx="auto"
-              fw={500}
-              size="md"
-              color="orange"
-              rightSection={<VscArrowRight />}
-            >
-              Get Lifetime Access for ${PRICING.LTD}
-            </Button>
-          </Stack>
-        </StyledPaper>
-      </Box>
     </Stack>
   );
 };

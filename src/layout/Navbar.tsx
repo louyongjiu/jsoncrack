@@ -1,14 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { Text, Alert, Button, ThemeIcon } from "@mantine/core";
+import { Button } from "@mantine/core";
 import styled from "styled-components";
-import { FaGift } from "react-icons/fa6";
-import { PRICING } from "src/pages/pricing";
 import { JSONCrackLogo } from "./JsonCrackLogo";
 
 const StyledNavbarWrapper = styled.div`
   z-index: 3;
-  padding-top: 1rem;
   transition: background 0.2s ease-in-out;
 `;
 
@@ -47,34 +44,9 @@ const Right = styled.div`
 export const Navbar = () => {
   return (
     <StyledNavbarWrapper className="navbar">
-      <Alert variant="filled" color="orange.4" fw={500} ta="center" p="6" mt="-1rem">
-        <Link href="/#buyonce">
-          <ThemeIcon size="sm" variant="transparent" color="black" mr={2}>
-            <FaGift size="12" />
-          </ThemeIcon>
-          Limited Offer: Lifetime Plan for ${PRICING.LTD}! Buy once,
-          <Text ml={4} component="span" inherit td="underline">
-            use forever
-          </Text>
-          .
-        </Link>
-      </Alert>
       <StyledNavbar>
         <Left>
           <JSONCrackLogo />
-          <Button
-            component={Link}
-            prefetch={false}
-            href="/#pricing"
-            variant="subtle"
-            color="black"
-            radius="sm"
-            size="sm"
-            ml={50}
-            fw={500}
-          >
-            Pricing
-          </Button>
           <Button
             component="a"
             href="https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode"
@@ -84,9 +56,35 @@ export const Navbar = () => {
             radius="sm"
             size="sm"
             fw={500}
+            ml={50}
           >
             VS Code
           </Button>
+          <Button
+            component={Link}
+            prefetch={false}
+            href="/premium"
+            variant="subtle"
+            color="black"
+            radius="sm"
+            size="sm"
+            fw={500}
+          >
+            Premium
+          </Button>
+          <Button
+            component={Link}
+            prefetch={false}
+            href="/#pricing"
+            variant="subtle"
+            color="black"
+            radius="sm"
+            size="sm"
+            fw={500}
+          >
+            Pricing
+          </Button>
+
           <Button
             component={Link}
             prefetch={false}
@@ -121,16 +119,9 @@ export const Navbar = () => {
             visibleFrom="sm"
             size="md"
           >
-            Sign in
+            Log in
           </Button>
-          <Button
-            component="a"
-            color="orange"
-            href="/editor"
-            radius="sm"
-            visibleFrom="sm"
-            size="md"
-          >
+          <Button component="a" color="dark" href="/editor" radius="sm" visibleFrom="sm" size="md">
             Editor
           </Button>
         </Right>
