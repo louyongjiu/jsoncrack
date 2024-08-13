@@ -7,6 +7,7 @@ import { JSONCrackLogo } from "./JsonCrackLogo";
 const StyledNavbarWrapper = styled.div`
   z-index: 3;
   transition: background 0.2s ease-in-out;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const StyledNavbar = styled.nav`
@@ -112,16 +113,24 @@ export const Navbar = () => {
         </Left>
         <Right>
           <Button
-            variant="default"
+            variant="subtle"
+            color="dark"
             component="a"
             href="https://app.jsoncrack.com/sign-in"
-            radius="sm"
+            radius="md"
             visibleFrom="sm"
             size="md"
           >
             Log in
           </Button>
-          <Button component="a" color="dark" href="/editor" radius="sm" visibleFrom="sm" size="md">
+          <Button
+            component="a"
+            color="indigo"
+            href="/editor"
+            radius="md"
+            visibleFrom="sm"
+            size="md"
+          >
             Editor
           </Button>
         </Right>

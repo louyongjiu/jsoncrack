@@ -43,7 +43,7 @@ const StyledRadioCard = styled(Radio.Card)`
   background: white;
 
   &[data-checked] {
-    border-color: #535353;
+    border-color: #120f43;
   }
 
   &:hover:not([data-checked]) {
@@ -56,6 +56,86 @@ const StyledRadioCard = styled(Radio.Card)`
     max-width: 100%;
   }
 `;
+
+const StyledFeatureCard = styled(Paper)<any>`
+  background: rgba(255, 170, 234, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  transition: 0.2s;
+
+  &:hover {
+    background: rgba(255, 170, 234, 0.15);
+  }
+`;
+
+interface FeatureItem {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
+}
+
+const features: FeatureItem[] = [
+  {
+    title: "Larger Data",
+    description: "From 300KB to ~4MB upgraded data size.",
+    icon: (
+      <Text fz="sm" fw="500">
+        4 MB
+      </Text>
+    ),
+    color: "blue.3",
+  },
+  {
+    title: "Compact Design",
+    description:
+      "50% less graph size. Get rid of the redundant data and nodes, focus on what's important.",
+    icon: <MdOutlinePhotoSizeSelectSmall size={30} />,
+    color: "violet.1",
+  },
+  {
+    title: "Faster",
+    description:
+      "Load data faster. Navigate faster. Search faster. Everything is faster than ever.",
+    icon: <MdSpeed size={30} />,
+    color: "green.3",
+  },
+  {
+    title: "Compare",
+    description: "Compare two data, highlight the differences directly on the graphs.",
+    icon: <MdCompare size={30} />,
+    color: "red.3",
+  },
+  {
+    title: "Customize",
+    description: "Customize the graph's colors to align with your brand or personal preferences.",
+    icon: <MdPalette size={30} />,
+    color: "yellow.2",
+  },
+  {
+    title: "Edit Directly",
+    description:
+      "Modify your data directly on the graph. No more switching between the editor and the graph.",
+    icon: <IoSparkles size={22} />,
+    color: "violet.3",
+  },
+  {
+    title: "Tabs",
+    description:
+      "Open multiple tabs, navigate between them easily. Save up to 200 documents to the cloud.",
+    icon: <GrMultiple size={22} />,
+    color: "grape.2",
+  },
+  {
+    title: "AI-Powered",
+    description: "Ask it to translate your fields, filter out by age or name includes, and more.",
+    icon: <RiRobot2Line size={22} />,
+    color: "gray.1",
+  },
+];
 
 const Premium = () => {
   const [plan, setPlan] = React.useState("monthly");
@@ -89,11 +169,11 @@ const Premium = () => {
         <Container
           pos="relative"
           pt={100}
-          pb={200}
+          pb={220}
           fluid
           style={{
             background:
-              "linear-gradient(165deg, #000000, #010101, #080808, #171717, #272727, #383838, #4a4a4a, #5d5d5d)",
+              "linear-gradient(15deg, #120f43, #0d0e3e, #0b0f39, #0a1034, #08102f, #071029, #051024, #040f1e)",
           }}
         >
           <Box mx="auto" maw={600}>
@@ -102,10 +182,10 @@ const Premium = () => {
               c="white"
               fz={{
                 base: 38,
-                xs: 50,
+                xs: 40,
               }}
             >
-              More than just a JSON Viewer.
+              JSON Crack - Premium
             </Title>
             <Text
               c="gray.3"
@@ -127,7 +207,7 @@ const Premium = () => {
               size="lg"
               rightSection={<MdChevronRight size={30} />}
             >
-              Get it now
+              Upgrade now
             </Button>
             <Image
               pos="absolute"
@@ -143,7 +223,14 @@ const Premium = () => {
           </Box>
         </Container>
         <PremiumPreview />
-        <Container fluid bg="dark" my={120} py={40}>
+        <Container
+          component="section"
+          id="features"
+          fluid
+          bg="radial-gradient(58.11% 44.54% at 51.59% -9.61%, rgb(180, 176, 254) 0%, rgb(54, 50, 133) 22.92%, rgb(17, 13, 91) 42.71%, rgb(5, 3, 39) 88.54%)"
+          my={120}
+          py={40}
+        >
           <Container size="xl">
             <Title
               fz={{
@@ -166,115 +253,19 @@ const Premium = () => {
               }}
               spacing="xl"
             >
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="blue.3">
-                    <Text fz="sm" fw={500}>
-                      4 MB
-                    </Text>
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    Larger Data
-                  </Title>
-                  <Text c="gray.3">From 300KB to ~4MB upgraded data size.</Text>
-                </Flex>
-              </Paper>
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="violet.1">
-                    <MdOutlinePhotoSizeSelectSmall size="30" />
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    Compact Design
-                  </Title>
-                  <Text c="gray.3">
-                    50% less graph size. Get rid of the redundant data and nodes, focus on
-                    what&apos;s important.
-                  </Text>
-                </Flex>
-              </Paper>
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="green.3">
-                    <MdSpeed size="30" />
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    Faster
-                  </Title>
-                  <Text c="gray.3">
-                    Load data faster. Navigate faster. Search faster. Everything is faster than
-                    ever.
-                  </Text>
-                </Flex>
-              </Paper>
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="orange.2">
-                    <MdCompare size="30" />
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    Compare
-                  </Title>
-                  <Text c="gray.3">
-                    Compare two data, highlight the differences directly on the graphs.
-                  </Text>
-                </Flex>
-              </Paper>
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="violet.3">
-                    <IoSparkles size="22" />
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    Edit Directly
-                  </Title>
-                  <Text c="gray.3">
-                    Modify your data directly on the graph. No more switching between the editor and
-                    the graph.
-                  </Text>
-                </Flex>
-              </Paper>
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="yellow.2">
-                    <MdPalette size="30" />
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    Customize
-                  </Title>
-                  <Text c="gray.3">
-                    Customize the graph&apos;s colors to align with your brand or personal
-                    preferences.
-                  </Text>
-                </Flex>
-              </Paper>
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="grape.2">
-                    <GrMultiple size="22" />
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    Tabs
-                  </Title>
-                  <Text c="gray.3">
-                    Open multiple tabs, navigate between them easily. Save up to 200 documents to
-                    the cloud.
-                  </Text>
-                </Flex>
-              </Paper>
-              <Paper bg="gray.8" p="lg" radius="md">
-                <Flex gap="sm" align="center" justify="center" direction="column">
-                  <ThemeIcon radius="xl" size="xl" variant="light" color="gray.1">
-                    <RiRobot2Line size="22" />
-                  </ThemeIcon>
-                  <Title ta="center" c="white" order={3}>
-                    AI-Powered
-                  </Title>
-                  <Text c="gray.3">
-                    Ask it to translate your fields, filter out by age or name includes, and more.
-                  </Text>
-                </Flex>
-              </Paper>
+              {features.map((feature, index) => (
+                <StyledFeatureCard p="lg" radius="md" key={index}>
+                  <Flex gap="sm" align="center" justify="center" direction="column">
+                    <ThemeIcon radius="xl" size="xl" variant="light" color={feature.color}>
+                      {feature.icon}
+                    </ThemeIcon>
+                    <Title ta="center" c="white" order={3}>
+                      {feature.title}
+                    </Title>
+                    <Text c="gray.3">{feature.description}</Text>
+                  </Flex>
+                </StyledFeatureCard>
+              ))}
             </SimpleGrid>
           </Container>
         </Container>
@@ -284,7 +275,7 @@ const Premium = () => {
             fw={500}
             mx="auto"
             ta="center"
-            c="dark"
+            c="#120F43"
             fz={{
               base: 28,
               xs: 40,
@@ -354,7 +345,7 @@ const Premium = () => {
               component="a"
               href={getUpgradeLink()}
               target="_blank"
-              color="dark"
+              color="#120F43"
               fullWidth
               mt="xl"
               size="xl"

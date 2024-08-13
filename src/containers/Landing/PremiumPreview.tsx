@@ -1,5 +1,15 @@
 import React from "react";
-import { AspectRatio, Container, Flex, Paper, SegmentedControl, Stack, Title } from "@mantine/core";
+import {
+  Button,
+  AspectRatio,
+  Container,
+  Flex,
+  Paper,
+  SegmentedControl,
+  Stack,
+  Title,
+  Divider,
+} from "@mantine/core";
 
 const features = [
   {
@@ -53,7 +63,7 @@ export const PremiumPreview = () => {
           }}
           justify="center"
         >
-          <Stack>
+          <Stack visibleFrom="sm">
             <SegmentedControl
               data={features}
               value={selectedFeature}
@@ -63,10 +73,9 @@ export const PremiumPreview = () => {
               bg="transparent"
               color="dark"
               size="lg"
-              visibleFrom="sm"
               styles={{
                 control: {
-                  background: "rgba(168, 168, 168, 0.2)",
+                  background: "rgba(141, 127, 174, 0.15)",
                   borderRadius: "4px",
                 },
                 root: {
@@ -74,6 +83,19 @@ export const PremiumPreview = () => {
                 },
               }}
             />
+            <Divider my="xs" />
+            <Button
+              component="a"
+              href="#features"
+              variant="light"
+              color="gray"
+              fw={500}
+              radius="sm"
+              size="lg"
+              fullWidth
+            >
+              Built for everyone.
+            </Button>
           </Stack>
           <Stack w="100%">
             <Paper
