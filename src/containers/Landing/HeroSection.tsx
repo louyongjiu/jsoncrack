@@ -76,7 +76,7 @@ const StyledHeroTitle = styled.h1`
   }
 `;
 
-const StyledHeroText = styled.p`
+const StyledHeroText = styled.h2`
   font-size: 14px;
   color: #4a5568;
   font-weight: 400;
@@ -143,13 +143,13 @@ export const HeroSection = ({ stars }: { stars: number }) => {
             <Button
               component="a"
               color="indigo"
-              href="/#pricing"
+              href="/editor"
               size="md"
               radius="md"
               rightSection={<FaChevronRight />}
               fw="500"
             >
-              Start for free
+              Go to Editor
             </Button>
             <Button
               component={Link}
@@ -168,13 +168,13 @@ export const HeroSection = ({ stars }: { stars: number }) => {
             <Button
               component="a"
               color="indigo"
-              href="/#pricing"
+              href="/editor"
               size="lg"
               radius="md"
               rightSection={<FaChevronRight />}
               fw="500"
             >
-              Start for free
+              Go to Editor
             </Button>
             <Button
               component={Link}
