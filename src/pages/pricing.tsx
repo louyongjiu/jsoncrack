@@ -10,16 +10,13 @@ import {
   Paper,
   SegmentedControl,
   Center,
-  Badge,
-  Tooltip,
   Anchor,
   type PaperProps,
   Box,
 } from "@mantine/core";
 import styled from "styled-components";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import { FaArrowRightLong, FaCheck, FaXmark } from "react-icons/fa6";
-import { VscLinkExternal } from "react-icons/vsc";
+import { FaArrowRightLong, FaCircleCheck } from "react-icons/fa6";
 import Layout from "src/layout/Layout";
 import { gaEvent } from "src/lib/utils/gaEvent";
 
@@ -38,202 +35,55 @@ export const purchaseLinks = {
   ltd: "https://jsoncrack.lemonsqueezy.com/buy/b4d2515e-1ed2-4f32-a6ad-615f208a89eb?enabled=384328",
 };
 
-const StyledPaper = styled(Paper)<PaperProps & any>`
-  padding: 1.5em;
+const StyledPaper = styled(Paper)<PaperProps & any & { $highlight?: boolean }>`
+  padding: 1.5rem;
   width: 350px;
+  flex: 350px;
   border-radius: 8px;
-  border: 2px solid #e2e2e2;
-  background: white;
+  background: ${({ $highlight }) => ($highlight ? "#202842" : "#ffffff")};
+  box-shadow:
+    0px 0px 1px rgba(3, 7, 18, 0.09),
+    0px 0px 6px rgba(3, 7, 18, 0.07),
+    0px 0px 13px rgba(3, 7, 18, 0.05),
+    0px 0px 22px rgba(3, 7, 18, 0.04),
+    0px 0px 35px rgba(3, 7, 18, 0.02);
 `;
 
 export const PricingCards = () => {
   const [isMonthly, setIsMonthly] = React.useState(true);
 
   return (
-    <Stack gap="0" align="center" maw="730px" mx="auto">
+    <Stack gap="0" align="center" w="fit-content" mx="auto">
       <Center my="lg">
         <SegmentedControl
-          bg="gray.3"
+          bg="gray.1"
           color="white"
           value={isMonthly ? "Monthly" : "Annual"}
           onChange={v => setIsMonthly(v === "Monthly")}
-          size="sm"
+          size="md"
+          w={280}
           data={[
             {
-              label: "Pay monthly",
+              label: "Monthly Billing",
               value: "Monthly",
             },
             {
-              label: `Pay yearly (save ${PRICING.getAnnualSave()}%)`,
+              label: "Yearly Billing",
               value: "Annual",
             },
           ]}
           radius="xl"
-          styles={{ label: { color: "black" } }}
+          styles={{ label: { color: "#282828" } }}
         />
       </Center>
-      <Flex
-        gap="sm"
-        wrap="wrap"
-        justify="space-between"
-        w="fit-content"
-        maw="100%"
-        p={{
-          xs: 4,
-          md: 6,
-        }}
-        mx="auto"
-      >
-        <StyledPaper>
-          <Flex justify="space-between">
-            <Stack gap="0" w="100%">
-              <Flex align="center">
-                <Text fw={500} size="xl" c="black">
-                  Premium
-                </Text>
-                {!isMonthly && (
-                  <Badge
-                    fw={600}
-                    size="md"
-                    variant="light"
-                    c="brightBlue"
-                    radius="sm"
-                    color="brightBlue"
-                    ml="sm"
-                  >
-                    SAVE {PRICING.getAnnualSave()}%
-                  </Badge>
-                )}
-              </Flex>
-
-              <Flex gap="xs" align="baseline">
-                <Text fz={38} fw={600} c="black">
-                  ${isMonthly ? PRICING.MONTHLY : PRICING.ANNUAL}
-                </Text>
-                <Text fz="md" c="gray.6">
-                  / mo
-                </Text>
-              </Flex>
-              <Flex justify="space-between">
-                <Text fz="xs" c="gray.7">
-                  billed {isMonthly ? "monthly" : "annually"}
-                </Text>
-                <Anchor component={Link} href="/premium" ml="sm" fz="xs" td="underline" c="dimmed">
-                  see all features
-                </Anchor>
-              </Flex>
-            </Stack>
-          </Flex>
-          <Button
-            component="a"
-            color="brightBlue"
-            onClick={() => gaEvent("Pricing", "click upgrade premium")}
-            href={isMonthly ? purchaseLinks.monthly : purchaseLinks.annual}
-            target="_blank"
-            size="lg"
-            radius="md"
-            fullWidth
-            my="md"
-            rightSection={<FaArrowRightLong />}
-          >
-            Get Started
-          </Button>
-          <Text mt="xs" fz="xs" c="dimmed">
-            Full-featured version of the editor with unlimited access.
-          </Text>
-          <Flex direction="column" justify="space-between">
-            <List
-              spacing="sm"
-              size="sm"
-              mt="xs"
-              c="black"
-              center
-              icon={<FaCheck size="18" color="#1866db" />}
-            >
-              <List.Item>
-                <Tooltip
-                  color="blue"
-                  label="Visualize up to 4 MB of data"
-                  maw={350}
-                  multiline
-                  withArrow
-                >
-                  <Text
-                    c="black"
-                    fw={500}
-                    fz="sm"
-                    style={{
-                      textDecoration: "underline",
-                      textDecorationStyle: "dashed",
-                      textUnderlineOffset: "2px",
-                    }}
-                  >
-                    Larger data support
-                  </Text>
-                </Tooltip>
-              </List.Item>
-              <List.Item>
-                <Tooltip
-                  color="blue"
-                  label="Load data 5x faster and 50% smaller graph size."
-                  maw={350}
-                  multiline
-                  withArrow
-                >
-                  <Text
-                    c="black"
-                    fw={500}
-                    fz="sm"
-                    style={{
-                      textDecoration: "underline",
-                      textDecorationStyle: "dashed",
-                      textUnderlineOffset: "2px",
-                    }}
-                  >
-                    Compact and Fast Visualization
-                  </Text>
-                </Tooltip>
-              </List.Item>
-              <List.Item>
-                <Text c="black" fw={500} fz="sm">
-                  Compare data
-                </Text>
-              </List.Item>
-              <List.Item>
-                <Text c="black" fw={500} fz="sm">
-                  Edit data on graph
-                </Text>
-              </List.Item>
-              <List.Item>
-                <Text c="black" fw={500} fz="sm">
-                  Built-in tabs for multiple documents
-                </Text>
-              </List.Item>
-              <List.Item>
-                <Text c="black" fw={500} fz="sm">
-                  Store 200 documents
-                </Text>
-              </List.Item>
-              <List.Item>
-                <Text c="black" fw={500} fz="sm">
-                  AI-powered data filter
-                </Text>
-              </List.Item>
-              <List.Item>
-                <Text c="black" fw={500} fz="sm">
-                  Customize graph colors
-                </Text>
-              </List.Item>
-            </List>
-          </Flex>
-        </StyledPaper>
+      <Flex gap="lg" wrap="wrap" justify="space-between" maw="100%" mb="lg" mx="auto">
         <StyledPaper>
           <Flex justify="space-between">
             <Stack gap="0">
-              <Text fw={500} size="xl" c="black">
+              <Text fw={600} size="md" c="#202842">
                 Free
               </Text>
-              <Text fz={38} fw={600} c="black">
+              <Text fz={36} fw={600} c="#202842">
                 $0
               </Text>
               <Text fz="xs" c="gray.7">
@@ -242,146 +92,171 @@ export const PricingCards = () => {
             </Stack>
           </Flex>
           <Button
-            component={Link}
-            href="/editor"
-            prefetch={false}
-            size="lg"
-            radius="md"
-            variant="outline"
-            color="dark"
+            component="a"
+            href="https://app.jsoncrack.com/sign-up"
+            target="_blank"
+            size="md"
+            radius="xl"
+            color="#202842"
             fullWidth
-            my="md"
-            rightSection={<FaArrowRightLong />}
+            my="lg"
           >
-            Start Free
+            Sign Up
           </Button>
-          <Text mt="xs" fz="xs" c="dimmed">
-            Basic version of the editor with limited features, open-source.
-          </Text>
           <Flex direction="column" justify="space-between">
             <List
               spacing="sm"
               size="sm"
-              mt="lg"
               c="black"
               center
-              icon={<FaCheck size="18" color="#1866db" />}
+              icon={<FaCircleCheck size="18" color="#202842" />}
             >
               <List.Item>
-                <Tooltip
-                  color="blue"
-                  label="Visualize up to ~300 KB of data"
-                  maw={350}
-                  multiline
-                  withArrow
-                >
-                  <Text
-                    c="black"
-                    fw={500}
-                    fz="sm"
-                    style={{
-                      textDecoration: "underline",
-                      textDecorationStyle: "dashed",
-                      textUnderlineOffset: "2px",
-                    }}
-                  >
-                    Basic data size support
-                  </Text>
-                </Tooltip>
+                <Text component="span" c="indigo" fw={500} inherit>
+                  25{" "}
+                </Text>
+                Documents Storage
               </List.Item>
               <List.Item>
-                <Tooltip
-                  color="blue"
-                  label={
-                    <Flex align="center" gap="xs">
-                      Open source and free to use
-                      <VscLinkExternal />
-                    </Flex>
-                  }
-                  maw={350}
-                  multiline
-                  withArrow
-                >
-                  <Anchor
-                    href="https://github.com/AykutSarac/jsoncrack.com"
-                    target="_blank"
-                    c="black"
-                    fw={500}
-                    fz="sm"
-                    style={{
-                      textDecoration: "underline",
-                      textDecorationStyle: "dashed",
-                      textUnderlineOffset: "2px",
-                    }}
-                  >
-                    Open Source
-                  </Anchor>
-                </Tooltip>
+                <Text component="span" c="indigo" fw={500} inherit>
+                  300 KB{" "}
+                </Text>
+                Data Support
               </List.Item>
               <List.Item>
-                <Text c="black" fw={500} fz="sm">
-                  Store 25 documents
-                </Text>
-              </List.Item>
-              <List.Item icon={<FaXmark color="gray" size={20} />}>
-                <Text c="gray.6" fw={500} fz="sm">
-                  Edit data on graph
-                </Text>
-              </List.Item>
-              <List.Item icon={<FaXmark color="gray" size={20} />}>
-                <Text c="gray.6" fw={500} fz="sm">
-                  AI-powered data filter
-                </Text>
-              </List.Item>
-              <List.Item icon={<FaXmark color="gray" size={20} />}>
-                <Text c="gray.6" fw={500} fz="sm">
-                  Compact visualization
-                </Text>
-              </List.Item>
-              <List.Item icon={<FaXmark color="gray" size={20} />}>
-                <Text c="gray.6" fw={500} fz="sm">
-                  Compare data
-                </Text>
-              </List.Item>
-              <List.Item icon={<FaXmark color="gray" size={20} />}>
-                <Text c="gray.6" fw={500} fz="sm">
-                  Customize graph colors
-                </Text>
+                <Anchor
+                  href="https://github.com/AykutSarac/jsoncrack.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  c="indigo"
+                  fw={500}
+                  fz="sm"
+                  style={{
+                    textDecoration: "underline",
+                    textDecorationStyle: "dashed",
+                    textUnderlineOffset: "2px",
+                  }}
+                >
+                  Open Source
+                </Anchor>
               </List.Item>
             </List>
           </Flex>
         </StyledPaper>
-        <Box w="100%">
-          <StyledPaper withBorder p="xs" w="100%" visibleFrom="sm">
-            <Flex gap="xs" align="end" justify="space-between">
-              <Stack gap="5">
-                <Text c="dark" fz="md" fw={500}>
-                  Buy once,
-                  <Text ml={4} component="span" inherit c="brightBlue">
-                    use forever
-                  </Text>
-                  !
+        <StyledPaper $highlight>
+          <Flex justify="space-between">
+            <Stack gap="0" w="100%">
+              <Flex align="center">
+                <Text fw={600} size="md" c="gray.1">
+                  Premium
                 </Text>
-                <Text c="gray.8" fz="sm" maw={400}>
-                  Lifetime access. One-time payment. Free updates.
+              </Flex>
+
+              <Flex gap="xs" align="baseline">
+                <Text fz={36} fw={600} c="white">
+                  ${isMonthly ? PRICING.MONTHLY : PRICING.ANNUAL}
                 </Text>
-              </Stack>
-              <Button
-                component="a"
-                href={purchaseLinks.ltd}
-                target="_blank"
-                fw={500}
-                fz="sm"
-                size="md"
-                color="indigo"
-                rightSection={<FaArrowRightLong />}
-              >
-                Get Lifetime Access for ${PRICING.LTD}
-              </Button>
-            </Flex>
-          </StyledPaper>
-        </Box>
+                <Text fz="md" fw={500} c="gray.6">
+                  / month
+                </Text>
+              </Flex>
+              <Flex justify="space-between">
+                <Text fz="xs" c="gray.6">
+                  billed {isMonthly ? "monthly" : "annually"}
+                </Text>
+                <Anchor component={Link} href="/premium" ml="sm" fz="xs" td="underline" c="gray.5">
+                  see all features
+                </Anchor>
+              </Flex>
+            </Stack>
+          </Flex>
+          <Button
+            component="a"
+            variant="white"
+            fw={600}
+            color="#202842"
+            onClick={() => gaEvent("Pricing", "click upgrade premium")}
+            href={isMonthly ? purchaseLinks.monthly : purchaseLinks.annual}
+            target="_blank"
+            size="md"
+            radius="xl"
+            fullWidth
+            my="lg"
+          >
+            Upgrade
+          </Button>
+          <Flex direction="column" justify="space-between">
+            <List
+              spacing="sm"
+              size="sm"
+              c="gray.2"
+              center
+              icon={<FaCircleCheck size="18" color="#ffffff" />}
+            >
+              <List.Item>Edit Data from Visualizations</List.Item>
+              <List.Item>Multi-Document Tabs</List.Item>
+              <List.Item>Compare Data & Highlight Changes</List.Item>
+              <List.Item>Customizable Themes</List.Item>
+              <List.Item>AI-Powered Data Filtering</List.Item>
+              <List.Item>
+                <Text component="span" c="lime.4" fw={500} inherit>
+                  4 MB{" "}
+                </Text>
+                Data Support
+              </List.Item>
+              <List.Item>
+                <Text component="span" c="lime.4" fw={500} inherit>
+                  200{" "}
+                </Text>
+                Documents Storage
+              </List.Item>
+              <List.Item>
+                <Text component="span" c="lime.4" fw={500} inherit>
+                  5x
+                </Text>{" "}
+                Faster Loading
+              </List.Item>
+              <List.Item>
+                <Text component="span" c="lime.4" fw={500} inherit>
+                  50%{" "}
+                </Text>
+                Smaller Graphs
+              </List.Item>
+            </List>
+          </Flex>
+        </StyledPaper>
       </Flex>
+      <Box w="100%">
+        <StyledPaper withBorder p="xs" w="100%">
+          <Flex wrap="wrap" gap="xs" align="end" justify="space-between">
+            <Stack gap="5">
+              <Text c="dark" fz="md" fw={500}>
+                Buy once,
+                <Text ml={4} component="span" inherit c="brightBlue.5">
+                  use forever
+                </Text>
+                !
+              </Text>
+              <Text c="gray.8" fz="sm" maw={400}>
+                Lifetime access. One-time payment. Free updates.
+              </Text>
+            </Stack>
+            <Button
+              component="a"
+              href={purchaseLinks.ltd}
+              target="_blank"
+              fz="sm"
+              size="md"
+              variant="light"
+              radius="md"
+              color="brightBlue"
+              rightSection={<FaArrowRightLong />}
+            >
+              Get Lifetime Access for ${PRICING.LTD}
+            </Button>
+          </Flex>
+        </StyledPaper>
+      </Box>
     </Stack>
   );
 };

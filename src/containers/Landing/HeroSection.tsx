@@ -1,10 +1,9 @@
 import React from "react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
-import { Stack, Flex, Badge, Button } from "@mantine/core";
+import { Stack, Flex, Text, Button } from "@mantine/core";
 import styled from "styled-components";
 import { FaChevronRight } from "react-icons/fa6";
-import { LovedBy } from "./LovedBy";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin-ext"],
@@ -19,8 +18,8 @@ const StyledHeroSection = styled.main`
     width: 100%;
     height: 100%;
     background-size: 40px 40px;
-    background-image: linear-gradient(to right, #f6f6f6 1px, transparent 1px),
-      linear-gradient(to bottom, #f6f6f6 1px, transparent 1px);
+    background-image: linear-gradient(to right, #f7f7f7 1px, transparent 1px),
+      linear-gradient(to bottom, #f7f7f7 1px, transparent 1px);
     image-rendering: pixelated;
     -webkit-mask-image: linear-gradient(to bottom, transparent, 0%, white, 98%, transparent);
     mask-image: linear-gradient(to bottom, transparent, 0%, white, 98%, transparent);
@@ -37,7 +36,7 @@ const StyledHeroSectionBody = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 6rem 10% 3rem;
+  padding: 6rem 10% 8rem;
   overflow: hidden;
   text-align: center;
   gap: 60px;
@@ -100,39 +99,11 @@ const StyledHeroText = styled.h2`
   }
 `;
 
-export const HeroSection = ({ stars }: { stars: number }) => {
+export const HeroSection = () => {
   return (
     <StyledHeroSection>
       <StyledHeroSectionBody>
         <Stack flex="1" miw={250} mx="auto" align="center">
-          <Link href="/#features">
-            <Badge
-              fw="600"
-              tt="none"
-              variant="outline"
-              c="gray.7"
-              color="gray.3"
-              bg="gray.0"
-              size="lg"
-              rightSection={<FaChevronRight />}
-              visibleFrom="xs"
-            >
-              Supports: JSON, CSV, XML, YAML, TOML
-            </Badge>
-            <Badge
-              fw="600"
-              tt="none"
-              variant="outline"
-              c="gray.7"
-              color="gray.3"
-              bg="gray.0"
-              size="md"
-              rightSection={<FaChevronRight />}
-              hiddenFrom="xs"
-            >
-              Supports: JSON, CSV, XML, YAML, TOML
-            </Badge>
-          </Link>
           <StyledHeroTitle>Visualize JSON into interactive graphs</StyledHeroTitle>
           <StyledHeroText>
             The best JSON viewer tool to <strong>visualize</strong>, <strong>format</strong> and{" "}
@@ -159,7 +130,6 @@ export const HeroSection = ({ stars }: { stars: number }) => {
               size="md"
               radius="md"
               fw="500"
-              rightSection={<FaChevronRight />}
             >
               Premium
             </Button>
@@ -184,12 +154,13 @@ export const HeroSection = ({ stars }: { stars: number }) => {
               size="lg"
               radius="md"
               fw="500"
-              rightSection={<FaChevronRight />}
             >
               Premium
             </Button>
           </Flex>
-          <LovedBy stars={stars} />
+          <Text ta="center" size="xs" c="gray">
+            Supports JSON, CSV, XML, YAML, TOML
+          </Text>
         </Stack>
       </StyledHeroSectionBody>
     </StyledHeroSection>
