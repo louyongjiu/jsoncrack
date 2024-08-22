@@ -131,13 +131,13 @@ export const HeroSection = () => {
               radius="md"
               fw="500"
             >
-              Premium
+              Explore Premium
             </Button>
           </Flex>
           <Flex gap="lg" wrap="wrap" justify="center" visibleFrom="xs">
             <Button
               component="a"
-              color="indigo"
+              color="#202842"
               href="/editor"
               size="lg"
               radius="md"
@@ -155,10 +155,10 @@ export const HeroSection = () => {
               radius="md"
               fw="500"
             >
-              Premium
+              Explore Premium
             </Button>
           </Flex>
-          <Text ta="center" size="xs" c="gray">
+          <Text ta="center" size="xs" c="dimmed">
             Supports JSON, CSV, XML, YAML, TOML
           </Text>
         </Stack>

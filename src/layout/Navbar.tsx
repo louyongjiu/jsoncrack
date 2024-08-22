@@ -64,10 +64,9 @@ export const Navbar = () => {
             prefetch={false}
             href="/#pricing"
             variant="subtle"
-            color="gray"
+            color="dark"
             size="md"
             radius="md"
-            fw={600}
           >
             Pricing
           </Button>
@@ -76,20 +75,18 @@ export const Navbar = () => {
             href="https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode"
             target="_blank"
             variant="subtle"
-            color="gray"
+            color="dark"
             size="md"
             radius="md"
-            fw={600}
           >
             VS Code
           </Button>
           <Button
             component={Link}
             prefetch={false}
-            fw={600}
             href="/affiliates"
             variant="subtle"
-            color="gray"
+            color="dark"
             size="md"
             radius="md"
           >
@@ -99,25 +96,24 @@ export const Navbar = () => {
         <Right>
           <Button
             variant="subtle"
-            color="gray"
+            color="dark"
             component="a"
             href="https://app.jsoncrack.com/sign-in"
             visibleFrom="sm"
             size="md"
             radius="md"
-            fw={600}
           >
             Log in
           </Button>
           <Button
             radius="md"
             component="a"
-            color="indigo"
+            color="#202842"
             href="/editor"
             visibleFrom="sm"
             size="md"
           >
-            Editor
+            Free editor
           </Button>
         </Right>
       </StyledNavbar>
