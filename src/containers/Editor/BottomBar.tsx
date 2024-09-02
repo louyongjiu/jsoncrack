@@ -1,7 +1,7 @@
 import React from "react";
-import Head from "next/head";
 import { Flex, Popover, Text } from "@mantine/core";
 import styled from "styled-components";
+import { event as gaEvent } from "nextjs-google-analytics";
 import { AiOutlineLink, AiOutlineLock, AiOutlineUnlock } from "react-icons/ai";
 import { BiSolidDockLeft } from "react-icons/bi";
 import {
@@ -13,7 +13,6 @@ import {
   VscSync,
   VscSyncIgnored,
 } from "react-icons/vsc";
-import { gaEvent } from "src/lib/utils/gaEvent";
 import useGraph from "src/modules/GraphView/stores/useGraph";
 import useConfig from "src/store/useConfig";
 import useFile from "src/store/useFile";
@@ -101,20 +100,16 @@ export const BottomBar = () => {
 
   const toggleEditor = () => {
     toggleFullscreen(!fullscreen);
-    gaEvent("Bottom Bar", "toggle fullscreen");
+    gaEvent("toggle_fullscreen");
   };
 
   React.useEffect(() => {
     setIsPrivate(data?.private ?? true);
+    if (data?.name) window.document.title = `${data.name} | JSON Crack`;
   }, [data]);
 
   return (
     <StyledBottomBar>
-      {data?.name && (
-        <Head>
-          <title>{data.name} | JSON Crack</title>
-        </Head>
-      )}
       <StyledLeft>
         <StyledBottomBarItem onClick={toggleEditor}>
           <BiSolidDockLeft />
@@ -163,7 +158,7 @@ export const BottomBar = () => {
         <StyledBottomBarItem
           onClick={() => {
             toggleLiveTransform(!liveTransformEnabled);
-            gaEvent("Bottom Bar", "toggle live transform", "manual");
+            gaEvent("toggle_live_transform");
           }}
         >
           {liveTransformEnabled ? <VscSync /> : <VscSyncIgnored />}

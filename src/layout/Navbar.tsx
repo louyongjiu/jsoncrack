@@ -60,15 +60,14 @@ export const Navbar = () => {
         </Left>
         <Center>
           <Button
-            component={Link}
-            prefetch={false}
-            href="/#pricing"
+            component="a"
+            href="https://todiagram.com"
             variant="subtle"
             color="black"
             size="md"
             radius="md"
           >
-            Pricing
+            Upgrade
           </Button>
           <Button
             component="a"
@@ -97,8 +96,8 @@ export const Navbar = () => {
           <Button
             variant="subtle"
             color="black"
-            component="a"
-            href="https://app.jsoncrack.com/sign-in"
+            component={Link}
+            href="/sign-in"
             visibleFrom="sm"
             size="md"
             radius="md"
@@ -113,7 +112,7 @@ export const Navbar = () => {
             visibleFrom="sm"
             size="md"
           >
-            Free editor
+            Editor
           </Button>
         </Right>
       </StyledNavbar>
