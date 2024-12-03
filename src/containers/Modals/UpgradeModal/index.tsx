@@ -10,6 +10,8 @@ import {
   ThemeIcon,
   AspectRatio,
   Paper,
+  CloseButton,
+  FocusTrap,
 } from "@mantine/core";
 import { LuCrown, LuTrendingUp } from "react-icons/lu";
 
@@ -26,10 +28,14 @@ export const UpgradeModal = ({ opened, onClose }: ModalProps) => {
       styles={{ body: { padding: 0 } }}
       overlayProps={{ blur: 1 }}
     >
+      <FocusTrap.InitialFocus />
       <Stack gap="24" px="40" py="20">
-        <Title c="bright" fw="500" fz="24">
-          Upgrade to unlock all features
-        </Title>
+        <Flex justify="space-between">
+          <Title c="bright" fw="500" fz="24">
+            Upgrade to unlock all features
+          </Title>
+          <CloseButton onClick={onClose} />
+        </Flex>
         <Flex gap="20">
           <ThemeIcon color="green" variant="light" size="xl" radius="xl">
             <LuCrown size="20" />
@@ -87,7 +93,7 @@ export const UpgradeModal = ({ opened, onClose }: ModalProps) => {
         </Paper>
         <Button
           component="a"
-          href="https://todiagram.com/sign-up?utm_source=jsoncrack&utm_medium=upgrade_modal"
+          href="https://todiagram.com/editor?utm_source=jsoncrack&utm_medium=upgrade_modal"
           target="_blank"
           mb="-16"
           color="green"
