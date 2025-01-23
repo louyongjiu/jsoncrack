@@ -1,4 +1,5 @@
 import React from "react";
+import { useComputedColorScheme } from "@mantine/core";
 import type { NodeProps } from "reaflow";
 import { Node } from "reaflow";
 import useGraph from "src/features/editor/views/GraphView/stores/useGraph";
@@ -23,6 +24,7 @@ const CustomNodeWrapper = (nodeProps: NodeProps<NodeData["data"]>) => {
   const data = nodeProps.properties.data;
   const setSelectedNode = useGraph(state => state.setSelectedNode);
   const setVisible = useModal(state => state.setVisible);
+  const colorScheme = useComputedColorScheme();
 
   const handleNodeClick = React.useCallback(
     (_: React.MouseEvent<SVGGElement, MouseEvent>, data: NodeData) => {
@@ -39,6 +41,17 @@ const CustomNodeWrapper = (nodeProps: NodeProps<NodeData["data"]>) => {
       onClick={handleNodeClick as any}
       animated={false}
       label={null as any}
+      onEnter={ev => {
+        ev.currentTarget.style.stroke = "#3B82F6";
+      }}
+      onLeave={ev => {
+        ev.currentTarget.style.stroke = colorScheme === "dark" ? "#424242" : "#BCBEC0";
+      }}
+      style={{
+        fill: colorScheme === "dark" ? "#292929" : "#ffffff",
+        stroke: colorScheme === "dark" ? "#424242" : "#BCBEC0",
+        strokeWidth: 1.5,
+      }}
     >
       {({ node, x, y }) => {
         if (Array.isArray(nodeProps.properties.text)) {
