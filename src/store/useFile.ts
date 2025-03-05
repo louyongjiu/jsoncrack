@@ -11,40 +11,35 @@ import useJson from "./useJson";
 
 const defaultJson = JSON.stringify(
   {
-    orderId: "A12345",
-    customer: {
-      name: "Jane Doe",
-      email: "jane.doe@example.com",
-      address: {
-        street: "123 Main St",
-        city: "New York",
-        state: "NY",
-        zipCode: "10001",
-      },
-      isMember: true,
-    },
-    products: [
+    fruits: [
       {
-        productId: "P001",
-        name: "Wireless Mouse",
-        quantity: 2,
-        price: 25.5,
-        image: "https://example.com/wireless-mouse.jpg",
-        color: "#3498db",
+        name: "Apple",
+        color: "Red",
+        nutrients: {
+          calories: 52,
+          fiber: "2.4g",
+          vitaminC: "4.6mg",
+        },
       },
       {
-        productId: "P002",
-        name: "Keyboard",
-        quantity: 1,
-        price: 45,
-        image: "https://example.com/keyboard.jpg",
-        color: "#2ecc71",
+        name: "Banana",
+        color: "Yellow",
+        nutrients: {
+          calories: 89,
+          fiber: "2.6g",
+          potassium: "358mg",
+        },
+      },
+      {
+        name: "Orange",
+        color: "Orange",
+        nutrients: {
+          calories: 47,
+          fiber: "2.4g",
+          vitaminC: "53.2mg",
+        },
       },
     ],
-    orderDate: "2025-01-02T10:15:30Z",
-    status: "Processing",
-    isPaid: false,
-    totalAmount: 96,
   },
   null,
   2
