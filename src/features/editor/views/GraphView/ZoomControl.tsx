@@ -3,9 +3,10 @@ import { ActionIcon, Flex } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
 import { event as gaEvent } from "nextjs-google-analytics";
 import { LuFocus, LuMaximize, LuMinus, LuPlus } from "react-icons/lu";
+import { SearchInput } from "../../Toolbar/SearchInput";
 import useGraph from "./stores/useGraph";
 
-export const ZoomControl = () => {
+export const ZoomControl = ({ isWidget = false }) => {
   const zoomIn = useGraph(state => state.zoomIn);
   const zoomOut = useGraph(state => state.zoomOut);
   const centerView = useGraph(state => state.centerView);
@@ -27,32 +28,38 @@ export const ZoomControl = () => {
       style={{
         position: "absolute",
         bottom: "10px",
-        right: "10px",
+        left: "10px",
         alignItems: "start",
         zIndex: 100,
       }}
     >
-      <ActionIcon
-        variant="default"
-        onClick={() => {
-          focusFirstNode();
-          gaEvent("focus_first_node");
-        }}
-      >
-        <LuFocus />
-      </ActionIcon>
-      <ActionIcon
-        variant="default"
-        onClick={() => {
-          centerView();
-          gaEvent("center_view");
-        }}
-      >
-        <LuMaximize />
-      </ActionIcon>
       <ActionIcon.Group borderWidth={0}>
         <ActionIcon
-          variant="default"
+          size="lg"
+          variant="light"
+          color="gray"
+          onClick={() => {
+            focusFirstNode();
+            gaEvent("focus_first_node");
+          }}
+        >
+          <LuFocus />
+        </ActionIcon>
+        <ActionIcon
+          size="lg"
+          variant="light"
+          color="gray"
+          onClick={() => {
+            centerView();
+            gaEvent("center_view");
+          }}
+        >
+          <LuMaximize />
+        </ActionIcon>
+        <ActionIcon
+          size="lg"
+          variant="light"
+          color="gray"
           onClick={() => {
             zoomOut();
             gaEvent("zoom_out");
@@ -61,7 +68,9 @@ export const ZoomControl = () => {
           <LuMinus />
         </ActionIcon>
         <ActionIcon
-          variant="default"
+          size="lg"
+          variant="light"
+          color="gray"
           onClick={() => {
             zoomIn();
             gaEvent("zoom_in");
@@ -70,6 +79,7 @@ export const ZoomControl = () => {
           <LuPlus />
         </ActionIcon>
       </ActionIcon.Group>
+      {!isWidget && <SearchInput />}
     </Flex>
   );
 };

@@ -8,18 +8,18 @@ import type { ElkRoot } from "reaflow/dist/layout/useLayout";
 import { useLongPress } from "use-long-press";
 import useToggleHide from "../../../../hooks/useToggleHide";
 import useConfig from "../../../../store/useConfig";
-import { SearchInput } from "../../Toolbar/SearchInput";
 import { CustomEdge } from "./CustomEdge";
 import { CustomNode } from "./CustomNode";
 import { NotSupported } from "./NotSupported";
 import { OptionsMenu } from "./OptionsMenu";
+import { SecureInfo } from "./SecureInfo";
 import { ZoomControl } from "./ZoomControl";
 import useGraph from "./stores/useGraph";
 
 const StyledEditorWrapper = styled.div<{ $widget: boolean; $showRulers: boolean }>`
   position: absolute;
   width: 100%;
-  height: ${({ $widget }) => ($widget ? "calc(100vh - 40px)" : "calc(100vh - 67px)")};
+  height: ${({ $widget }) => ($widget ? "100vh" : "calc(100vh - 67px)")};
 
   --bg-color: ${({ theme }) => theme.GRID_BG_COLOR};
   --line-color-1: ${({ theme }) => theme.GRID_COLOR_PRIMARY};
@@ -60,10 +60,6 @@ const StyledEditorWrapper = styled.div<{ $widget: boolean; $showRulers: boolean 
 
   rect {
     fill: ${({ theme }) => theme.BACKGROUND_NODE};
-  }
-
-  @media only screen and (max-width: 768px) {
-    height: ${({ $widget }) => ($widget ? "calc(100vh - 40px)" : "100vh")};
   }
 
   @media only screen and (max-width: 320px) {
@@ -178,8 +174,8 @@ export const GraphView = ({ isWidget = false }: GraphProps) => {
     <>
       <LoadingOverlay visible={loading} />
       {!isWidget && <OptionsMenu />}
-      {!isWidget && <SearchInput />}
-      <ZoomControl />
+      {!isWidget && <SecureInfo />}
+      <ZoomControl isWidget={isWidget} />
       <StyledEditorWrapper
         $widget={isWidget}
         onContextMenu={e => e.preventDefault()}
