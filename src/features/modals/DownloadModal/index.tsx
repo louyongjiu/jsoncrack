@@ -83,7 +83,7 @@ export const DownloadModal = ({ opened, onClose }: ModalProps) => {
 
       if (!blob) return;
 
-      navigator.clipboard?.write([
+      await navigator.clipboard?.write([
         new ClipboardItem({
           [blob.type]: blob,
         }),
@@ -92,7 +92,13 @@ export const DownloadModal = ({ opened, onClose }: ModalProps) => {
       toast.success("Copied to clipboard");
       gaEvent("clipboard_img");
     } catch (error) {
-      toast.error("Failed to copy to clipboard");
+      if (error instanceof Error && error.name === "NotAllowedError") {
+        toast.error(
+          "Clipboard write permission denied. Please allow clipboard access in your browser settings."
+        );
+      } else {
+        toast.error("Failed to copy to clipboard");
+      }
     } finally {
       toast.dismiss("toastClipboard");
       onClose();
